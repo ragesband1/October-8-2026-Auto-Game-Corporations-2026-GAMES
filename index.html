@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="tl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Auto Game Corporations 2026 GAMES</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#070712;font-family:Arial,sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center}
+.header{margin:20px 10px 5px;font-size:26px;font-weight:900;letter-spacing:2px;background:linear-gradient(90deg,lime,cyan,yellow,lime);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-align:center;animation:hue 3s infinite linear;text-shadow:0 0 20px lime}
+.subheader{margin:0 10px 15px;font-size:14px;font-weight:900;color:yellow;text-align:center;text-shadow:0 0 10px yellow,0 0 20px magenta;animation:flash 0.8s infinite alternate}
+@keyframes flash{0%{opacity:0.7}100%{opacity:1}}
+@keyframes hue{0%{filter:hue-rotate(0deg)}100%{filter:hue-rotate(360deg)}}
+.container{width:95%;max-width:1000px;display:flex;flex-wrap:wrap;gap:18px;justify-content:center;margin-top:10px;padding-bottom:80px}
+.box{width:280px;height:150px;display:flex;flex-direction:column;justify-content:center;align-items:center;background:rgba(0,0,0,0.7);border:2px solid cyan;border-radius:15px;cursor:pointer;font-size:12px;font-weight:900;text-align:center;color:white;padding:12px;transition:all 2s ease;box-shadow:0 0 8px cyan,inset 0 0 8px cyan;animation:neonPulse 2s infinite alternate ease-in-out}
+.box.wish{border-color:yellow;box-shadow:0 0 15px yellow,inset 0 0 10px yellow;animation:neonPulseYellow 2s infinite alternate ease-in-out}
+@keyframes neonPulseYellow{0%{box-shadow:0 0 8px yellow,inset 0 0 8px yellow;border-color:yellow}100%{box-shadow:0 0 25px orange,0 0 50px orange,inset 0 0 12px orange;border-color:orange}}
+.box span{font-size:9px;font-weight:400;color:#aaa;margin-top:5px}
+.box:hover{transform:scale(1.12);border-color:magenta;background:rgba(255,0,255,0.15);color:yellow;box-shadow:0 0 20px magenta,0 0 50px magenta,0 0 80px cyan,inset 0 0 15px magenta;transition:all 2s ease}
+@keyframes neonPulse{0%{box-shadow:0 0 8px cyan,inset 0 0 8px cyan;border-color:cyan}100%{box-shadow:0 0 25px lime,0 0 45px lime,inset 0 0 12px lime;border-color:lime}}
+.modal{display:none;position:fixed;z-index:999;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,0.85)}
+.modal-content{background:#111;border:3px solid cyan;box-shadow:0 0 30px cyan;margin:8% auto;padding:25px;border-radius:15px;width:92%;max-width:600px;text-align:center;color:white;animation:pop 0.3s ease;max-height:80vh;overflow-y:auto}
+@keyframes pop{0%{transform:scale(0.7)}100%{transform:scale(1)}}
+.close{float:right;font-size:28px;cursor:pointer}
+.link-btn{display:block;margin:8px auto;padding:11px 16px;background:linear-gradient(90deg,blue,cyan);color:white;border-radius:8px;text-decoration:none;font-weight:900;word-break:break-all;transition:2s ease;box-shadow:0 0 10px cyan;font-size:11px;width:95%}
+.link-btn:hover{background:linear-gradient(90deg,magenta,lime);box-shadow:0 0 20px magenta}
+.small{font-size:9px;color:#888;margin-top:3px}
+</style>
+</head>
+<body>
+<div class="header">Auto Game Corporations 2026 GAMES</div>
+<div class="subheader">IF YOU WANT TO WISH CREATE YOUR OWN GAMES TRY THESE ONES!!!!!</div>
+<div class="container" id="grid"></div>
+
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">×</span>
+    <div id="modalInner"></div>
+  </div>
+</div>
+
+<script>
+const sections = [
+  {
+    title:"1. Ipadala ang Iyong Ideya sa Google",
+    desc:"Kung may maganda kang ideya para sa isang Doodle o interactive game, pwede mo itong i-email sa kanilang opisyal na team:",
+    links:[{name:"Email: doodlerequests@google.com",url:"mailto:doodlerequests@google.com"}]
+  },
+  {
+    title:"2. Mag-akay at Mag-code ng Sariling Web Game",
+    desc:"Kung gusto mong matutong gumawa ng mga larong kapareho ng mekaniks ng Google Doodles (browser-based HTML5 games), pwedeng magsimula sa mga libreng platform na ito:",
+    links:[
+      {name:"Scratch (MIT): Pinakamadaling gamitin visual block coding - fan-made Doodle games",url:"https://scratch.mit.edu"},
+      {name:"Phaser.js Engine: Sikat na open-source JavaScript framework para sa HTML5 2D browser games",url:"https://phaser.io"},
+      {name:"Construct 3: Game engine sa browser kahit walang malalim na coding",url:"https://www.construct.net"}
+    ]
+  },
+  {
+    title:"3. Doodle for Google Competition",
+    desc:"Taun-taon, nagdaraos ang Google ng kompetisyon para sa mga estudyante kung saan pwedeng mag-submit ng sariling artwork o konsepto para sa Google Logo:",
+    links:[
+      {name:"Official Contest Site: Doodle for Google",url:"https://doodles.google.com/d4g/"},
+      {name:"Google Doodles Archive 1998-2026",url:"https://www.google.com/doodles"}
+    ]
+  },
+  {
+    title:"IF YOU WANT TO WISH CREATE YOUR OWN GAMES TRY THESE ONES!!!!!",
+    desc:"Gusto mo gumawa ng sarili mong laro tulad ng Septic Shock? Ito ang best tools!",
+    wish:true,
+    links:[
+      {name:"Scratch (MIT) - Easiest for beginners",url:"https://scratch.mit.edu"},
+      {name:"Phaser.io - HTML5 Game Framework",url:"https://phaser.io"},
+      {name:"Construct 3 - No-code game engine",url:"https://www.construct.net"},
+      {name:"GDevelop - Free open-source",url:"https://gdevelop.io"},
+      {name:"Kaboom.js - Fun JS game lib",url:"https://kaboomjs.com"},
+      {name:"itch.io - Publish your games",url:"https://itch.io"},
+      {name:"GitHub Pages - Free hosting tulad ng ragesband1.github.io",url:"https://pages.github.com"}
+    ]
+  }
+];
+
+const grid=document.getElementById('grid');
+sections.forEach(sec=>{
+  let b=document.createElement('div');
+  b.className= sec.wish ? 'box wish' : 'box';
+  b.innerHTML=`${sec.title}<span>${sec.desc.substring(0,70)}...</span>`;
+  b.onclick=()=>showModal(sec);
+  grid.appendChild(b);
+});
+
+function showModal(sec){
+  let html=`<h3 style="color:${sec.wish?'yellow':'cyan'};margin-top:10px;">${sec.title}</h3><p style="font-size:11px;color:#aaa;margin:10px 0;">${sec.desc}</p>`;
+  sec.links.forEach(l=>{
+    html+=`<a href="${l.url}" target="_blank" class="link-btn">${l.name}<div class="small">${l.url}</div></a>`;
+  });
+  document.getElementById('modalInner').innerHTML=html;
+  document.getElementById('myModal').style.display='block';
+}
+function closeModal(){document.getElementById('myModal').style.display='none';}
+window.onclick=(e)=>{if(e.target===document.getElementById('myModal')) closeModal();}
+</script>
+</body>
+</html>
